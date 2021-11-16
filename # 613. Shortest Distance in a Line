@@ -1,0 +1,7 @@
+# 613. Shortest Distance in a Line
+select abs(a.x-b.x) as shortest from Point a
+join Point b
+on a.x != b.x
+order by shortest ASC
+limit 1
+;
