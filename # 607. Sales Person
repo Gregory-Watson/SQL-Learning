@@ -1,0 +1,11 @@
+# 607. Sales Person
+select SalesPerson.name from SalesPerson 
+where SalesPerson.name not in 
+(select a.name from SalesPerson a 
+left outer join Orders b
+on a.sales_id = b.sales_id
+left outer Join Company c
+on b.com_id = c.com_id
+where c.name = 'RED'
+group by a.name)
+;
