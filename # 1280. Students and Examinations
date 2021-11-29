@@ -1,0 +1,12 @@
+# 1280. Students and Examinations
+
+select a.student_id, a.student_name, b.subject_name, IfNull(c.attended_exams, 0) as attended_exams from Students a
+join Subjects b
+left outer join 
+(
+select student_id, subject_name, count(student_id) as attended_exams from Examinations
+group by student_id, subject_name
+) c
+on a.student_id = c.student_id and b.subject_name = c.subject_name
+order by a.student_id, b.subject_name
+;
