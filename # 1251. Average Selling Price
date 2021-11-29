@@ -1,0 +1,8 @@
+# 1251. Average Selling Price
+
+select a.product_id, round(sum(a.price * b.units)/sum(b.units), 2) as average_price from Prices a 
+inner join UnitsSold b 
+on (b.purchase_date between a.start_date and a.end_date)
+and a.product_id = b.product_id
+group by a.product_id;
+
