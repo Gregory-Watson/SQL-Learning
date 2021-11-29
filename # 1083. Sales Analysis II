@@ -1,0 +1,14 @@
+# 1083. Sales Analysis II
+select distinct(a.buyer_id) from Sales a
+join Sales b on a.buyer_id = b.buyer_id
+inner join Product c on a.product_id = c.product_id
+inner join Product d on b.product_id = d.product_id
+where (c.product_name = 'S8' or d.product_name = 'S8') 
+and a.buyer_id not in 
+(select a.buyer_id from Sales a
+join Sales b on a.buyer_id = b.buyer_id
+inner join Product c on a.product_id = c.product_id
+inner join Product d on b.product_id = d.product_id
+where (c.product_name = 'S8' or d.product_name = 'S8') and 
+(c.product_name = 'iPhone' or d.product_name = 'iPhone'))
+;
