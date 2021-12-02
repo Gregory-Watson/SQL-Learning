@@ -1,0 +1,18 @@
+# 1294. Weather Type in Each Country
+
+select country_name, weather_type from Countries a
+inner join 
+(
+select country_id, 
+case
+    when avg_w <= 15 then 'Cold'
+    when avg_w >= 25 then 'Hot'
+    Else 'Warm'
+    end as weather_type from 
+(
+select country_id, avg(weather_state) as avg_w from Weather
+where day between '2019-11-01' and '2019-11-30'
+group by country_id
+) sub
+) b on a.country_id = b.country_id
+;
