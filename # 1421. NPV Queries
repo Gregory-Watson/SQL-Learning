@@ -1,0 +1,4 @@
+# 1421. NPV Queries
+select a.id, a.year, ifnull(b.npv,0) as npv from Queries a
+left outer join NPV b on a.id = b.id and a.year = b.year
+
