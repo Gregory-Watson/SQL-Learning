@@ -1,0 +1,15 @@
+# 1511. Customer Order Frequency
+select distinct(a.customer_id), b.name from Orders a
+inner join Customers b on a.customer_id = b.customer_id
+and a.customer_id in
+(select a.customer_id from Orders a
+inner join Product c on a.product_id = c.product_id
+where a.order_date like '2020-06%'
+group by a.customer_id
+having sum(a.quantity*c.price)>=100)
+and a.customer_id in           
+(select a.customer_id from Orders a
+inner join Product c on a.product_id = c.product_id
+where a.order_date like '2020-07%'
+group by a.customer_id
+having sum(a.quantity*c.price)>=100);
