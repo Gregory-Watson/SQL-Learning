@@ -1,0 +1,8 @@
+# 1517. Find Users With Valid E-Mails
+
+select * from Users
+where mail like '%@leetcode.com' and    # email domain
+(ascii(mail) between 97 and 122         # first char is letter (lower)
+ or ascii(mail) between 65 and 90)      # first car is letter (upper)
+ and left(mail, length(mail)-13) not regexp '[^-_.a-zA-Z0-9]'; 
+
