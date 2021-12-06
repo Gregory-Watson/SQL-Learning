@@ -1,0 +1,6 @@
+# 550. Game Play Analysis IV
+select round(count(distinct(a.player_id))/count(distinct(c.player_id )),2) as fraction from
+(select player_id, min(event_date) as fst_date from Activity group by player_id) a
+inner join Activity b on a.player_id = b.player_id and a.fst_date = (b.event_date - 1)
+join Activity c
+
