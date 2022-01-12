@@ -1,0 +1,7 @@
+# 1045. Customers Who Bought All Products
+# slow solution, extra group by
+select customer_id from
+(select customer_id from Customer
+group by customer_id, product_key) a
+group by customer_id 
+having count(customer_id) = (select count(product_key) from Product);
