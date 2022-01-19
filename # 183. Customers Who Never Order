@@ -1,0 +1,5 @@
+# 183. Customers Who Never Order
+select a.name as Customers from Customers a
+left outer join Orders b
+on a.id = b.customerId
+where b.id is NULL;
