@@ -1,0 +1,9 @@
+# 1077. Project Employees III
+select a.project_id, a.employee_id from Project a
+inner join Employee b on a.employee_id = b.employee_id
+inner join
+(select a.project_id, max(b.experience_years) as experience_years  from Project a
+inner join Employee b on a.employee_id = b.employee_id
+group by a.project_id) c 
+on a.project_id = c.project_id 
+where b.experience_years = c.experience_years;
