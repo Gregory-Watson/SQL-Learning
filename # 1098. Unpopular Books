@@ -1,0 +1,9 @@
+# 1098. Unpopular Books
+select a.book_id, a.name from Books a
+left outer join (select book_id, sum(quantity) as quantity from Orders
+where dispatch_date > '2018-06-23'
+group by book_id) b
+on a.book_id = b.book_id
+where a.available_from < '2019-05-23'
+and ifnull(quantity,0) < 10
+;
