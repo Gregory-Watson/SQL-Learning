@@ -1,0 +1,5 @@
+# 197. Rising Temperature
+select a.id from Weather a
+inner join Weather b 
+on Date_add(a.recordDate, Interval -1 Day) = b.recordDate
+where a.temperature > b.temperature;
